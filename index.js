@@ -1,13 +1,39 @@
+// function hasTargetSum(array, target) {
+
+//   for (let index = 0; index < array.length; index++) {
+//     const complement = target - array[index]
+//     for (let index2 = index + 1; index2 < array.length; index2++) {
+//       if (array[index2] === complement) return true;
+//     }
+//   }
+//   return false
+// }
+
 function hasTargetSum(array, target) {
-  // Write your algorithm here
+
+  const seenNumbers = new Set();
+
+  for (const number of array) {
+    const complement = target - number;
+    if (seenNumbers.has(complement)) return true;
+
+    seenNumbers.add(number)
+  }
+  return false
 }
 
 /* 
   Write the Big O time complexity of your function here
+  first - 0(n²)
+  second - (0n), (0n)
 */
 
 /* 
-  Add your pseudocode here
+  go through every combo of two elements in an array until one equals the target, then return true
+  if none match, return false
+
+  look through element - target
+  if any other indexes equal that number, true
 */
 
 /*
@@ -29,6 +55,11 @@ if (require.main === module) {
 
   console.log("Expecting: false");
   console.log("=>", hasTargetSum([1, 2, 5], 4));
+
+  console.log("Expecting: false");
+  console.log("=>", hasTargetSum([5, 7, 8, 5], 2));
+
+  console.log("");
 }
 
 module.exports = hasTargetSum;
